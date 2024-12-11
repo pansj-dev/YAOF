@@ -13,7 +13,7 @@ clone_repo() {
 }
 
 # 定义一些变量，存储仓库地址和分支名
-latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][3-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
+latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/23/p' | sed -n 1p | sed 's/.tar.gz//g')"
 immortalwrt_repo="https://github.com/immortalwrt/immortalwrt.git"
 immortalwrt_pkg_repo="https://github.com/immortalwrt/packages.git"
 immortalwrt_luci_repo="https://github.com/immortalwrt/luci.git"
@@ -40,43 +40,23 @@ linkease_repo="https://github.com/linkease/openwrt-app-actions"
 linkease_pkg_repo="https://github.com/jjm2473/packages"
 linkease_luci_repo="https://github.com/jjm2473/luci"
 sirpdboy_repo="https://github.com/sirpdboy/sirpdboy-package"
+sbwdaednext_repo="https://github.com/sbwml/luci-app-daed-next"
+lucidaednext_repo="https://github.com/QiuSimons/luci-app-daed-next"
+sbwfw876_repo="https://github.com/sbwml/openwrt_helloworld"
+sbw_pkg_repo="https://github.com/sbwml/openwrt_pkgs"
+natmap_repo="https://github.com/blueberry-pie-11/luci-app-natmap"
+xwrt_repo="https://github.com/QiuSimons/openwrt-natflow"
 
 # 开始克隆仓库，并行执行
 clone_repo $openwrt_repo $latest_release openwrt &
 clone_repo $openwrt_repo openwrt-23.05 openwrt_snap &
-clone_repo $immortalwrt_repo master immortalwrt &
-clone_repo $immortalwrt_repo openwrt-21.02 immortalwrt_21 &
 clone_repo $immortalwrt_repo openwrt-23.05 immortalwrt_23 &
-clone_repo $immortalwrt_pkg_repo master immortalwrt_pkg &
-clone_repo $immortalwrt_pkg_repo openwrt-21.02 immortalwrt_pkg_21 &
-clone_repo $immortalwrt_luci_repo master immortalwrt_luci &
-clone_repo $immortalwrt_luci_repo openwrt-21.02 immortalwrt_luci_21 &
-clone_repo $immortalwrt_luci_repo openwrt-23.05 immortalwrt_luci_23 &
 clone_repo $lede_repo master lede &
-clone_repo $lede_luci_repo master lede_luci &
-clone_repo $lede_pkg_repo master lede_pkg &
 clone_repo $openwrt_repo main openwrt_ma &
-clone_repo $openwrt_repo openwrt-22.03 openwrt_22 &
 clone_repo $openwrt_pkg_repo master openwrt_pkg_ma &
-clone_repo $openwrt_luci_repo master openwrt_luci_ma &
-clone_repo $lienol_repo 23.05 Lienol &
-clone_repo $lienol_pkg_repo main Lienol_pkg &
 clone_repo $openwrt_add_repo master OpenWrt-Add &
-clone_repo $openwrt_node_repo master openwrt-node &
-clone_repo $passwall_pkg_repo main passwall_pkg &
-clone_repo $passwall_luci_repo main passwall_luci &
-clone_repo $openwrt_third_repo main openwrt-third &
 clone_repo $dockerman_repo master dockerman &
-clone_repo $diskman_repo master diskman &
 clone_repo $docker_lib_repo master docker_lib &
-clone_repo $mosdns_repo master mosdns &
-clone_repo $ssrp_repo master ssrp &
-clone_repo $zxlhhyccc_repo master zxlhhyccc &
-clone_repo $linkease_repo main linkease &
-clone_repo $linkease_pkg_repo istoreos-21.02 linkease_pkg &
-clone_repo $linkease_luci_repo istoreos-21.02 linkease_luci &
-clone_repo $sirpdboy_repo main sirpdboy &
-
 # 等待所有后台任务完成
 wait
 
